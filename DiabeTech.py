@@ -2,7 +2,7 @@ from fastapi import FastAPI
 # Removed unused imports
 import pickle
 import uvicorn
-from diabetech import DiabeTech
+from diabetech import Diabetech
 
 
 app = FastAPI()
@@ -15,7 +15,7 @@ def index():
 
 
 @app.post('/predict')
-def predict_diabetes(data: DiabeTech):
+def predict_diabetes(data: Diabetech):
     data = data.dict()
     Pregnancies = data['Pregnancies']
     Glucose = data['Glucose']
@@ -34,11 +34,10 @@ def predict_diabetes(data: DiabeTech):
     return {
         'prediction': prediction
     } 
-    
-    if __name__ == '__DiabeTech__':
-        uvicorn.run(app, host='127.0.0.1', port=8000)
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port=8000)
         
         
 # Run the code in the terminal
-# Run the code in the terminal
-# uvicorn Diabetech:app --reload
+# uvicorn DiabeTech:app --reload
